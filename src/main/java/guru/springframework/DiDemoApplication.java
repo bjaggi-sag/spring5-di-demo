@@ -4,6 +4,8 @@ import guru.springframework.controllers.ConstructorInjectedController;
 import guru.springframework.controllers.GetterInjectedController;
 import guru.springframework.controllers.MyController;
 import guru.springframework.controllers.PropertyInjectedController;
+import guru.springframework.examplebeans.FakeDataSource;
+import guru.springframework.examplebeans.FakeJMSBroker;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -15,10 +17,15 @@ public class DiDemoApplication {
 		ApplicationContext ctx = SpringApplication.run(DiDemoApplication.class, args);
 
 		MyController controller = (MyController) ctx.getBean("myController");
+		FakeDataSource fakeDataSource = ctx.getBean(FakeDataSource.class);
+		System.out.println(fakeDataSource.getUser());
+		System.out.println(fakeDataSource.getPassword());
+		System.out.println(fakeDataSource.getUrl());
 
-		System.out.println(controller.hello());
-		System.out.println(ctx.getBean(PropertyInjectedController.class).sayHello());
-		System.out.println(ctx.getBean(GetterInjectedController.class).sayHello());
-		System.out.println(ctx.getBean(ConstructorInjectedController.class).sayHello());
+		FakeJMSBroker fakeJMSBroker = ctx.getBean(FakeJMSBroker.class);
+		System.out.println(fakeJMSBroker.getUser());
+		System.out.println(fakeJMSBroker.getPassword());
+		System.out.println(fakeJMSBroker.getUrl());
+
 	}
 }

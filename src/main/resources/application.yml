@@ -1,0 +1,5 @@
+jaggi:
+  jms:
+    username: BalpreetJMS
+    password: JMSPassword
+    url: JMSUrl
